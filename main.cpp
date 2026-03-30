@@ -23,12 +23,9 @@ int main(void) {
     // The main game loop
     while(!WindowShouldClose()) {
         // Right here is where all the ACTUAL code updating goes
-        console.tick();
 
         BeginDrawing(); // Start the screen updating
             ClearBackground(BLACK);
-            
-            console.printConsoleLine(); // Goes last for now because it needs to overlap
         EndDrawing();
     }
 

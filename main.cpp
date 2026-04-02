@@ -1,15 +1,24 @@
 #include <raylib.h>
-#include "debugConsole.h"
+#include <vector>
+#include <iostream>
+
+#include "gameplayObjs.cpp"
 
 using namespace std;
 
-// TO DO: Re-Do Console so less memory is used up, create a tick list so that its easier to manage order of things to do (with prio)
-// Make sure to add being able to actually run things in the console too!!!
-// After that pretty much just start working on the damn game lol
+// Alpha 1.1
 
-// Alpha 1.0
+// To-Do: Classes and pointers are wonky. When working on this next time, make a gameplay object class, and then let other classes inherit
+// the generic values so that they can actually function properly. Use names to figure out which classes are which.
 
-int main(void) {
+GameplayObjs* debugObjs() {
+    if (IsKeyPressed(KEY_F1)) {
+        return new Player;
+    }
+    return NULL;
+}
+
+int main() {
     // Setup vars, such as window and fps parameters
     const int screenWidth = 1920;
     const int screenHeight = 1080;
@@ -18,14 +27,34 @@ int main(void) {
     SetTargetFPS(60);
 
     // Class vars and important vars
-    debugConsole console;
+    vector<GameplayObjs*> gameplayObjs; // REMEMBER TO DELETE THE CLASSES!!!
 
     // The main game loop
     while(!WindowShouldClose()) {
         // Right here is where all the ACTUAL code updating goes
 
+        GameplayObjs* tempObjHolder = debugObjs(); // Adds new GameplayObjs to a list
+        if (tempObjHolder != NULL) {
+            gameplayObjs.push_back(tempObjHolder);
+            cout << tempObjHolder << "\n";
+        }
+
+        for (int x = 0; x < gameplayObjs.size(); x++) {
+            if(gameplayObjs[x]->objType == "Player") { // If is a player object
+                // This shit does NOT work
+                gameplayObjs[x]->tick();
+            }
+        }
+
         BeginDrawing(); // Start the screen updating
             ClearBackground(BLACK);
+            for (int x = 0; x < gameplayObjs.size(); x++) {
+            if(gameplayObjs[x]->objType == "Player") { // If is a player object
+                // This shit does NOT work
+                gameplayObjs[x]->draw();
+                cout << "Drawn Object" << "\n";
+            }
+        }
         EndDrawing();
     }
 

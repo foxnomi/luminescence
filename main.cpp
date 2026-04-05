@@ -7,9 +7,7 @@
 using namespace std;
 
 // Alpha 1.1
-
-// To-Do: Classes and pointers are wonky. When working on this next time, make a gameplay object class, and then let other classes inherit
-// the generic values so that they can actually function properly. Use names to figure out which classes are which.
+// 4/1/26
 
 GameplayObjs* debugObjs() {
     if (IsKeyPressed(KEY_F1)) {
@@ -22,7 +20,7 @@ int main() {
     // Setup vars, such as window and fps parameters
     const int screenWidth = 1920;
     const int screenHeight = 1080;
-    InitWindow(screenWidth, screenHeight, "Luminescence Alpha 1.0");
+    InitWindow(screenWidth, screenHeight, "Luminescence Alpha 1.1");
     SetWindowState(FLAG_FULLSCREEN_MODE);
     SetTargetFPS(60);
 
@@ -50,9 +48,10 @@ int main() {
             ClearBackground(BLACK);
             for (int x = 0; x < gameplayObjs.size(); x++) {
             if(gameplayObjs[x]->objType == "Player") { // If is a player object
-                // This shit does NOT work
+                // This shit DOES IN FACT WORK!!!!!!
+                // HOLY FUCK
+                // 4/2/26 12:36am
                 gameplayObjs[x]->draw();
-                cout << "Drawn Object" << "\n";
             }
         }
         EndDrawing();

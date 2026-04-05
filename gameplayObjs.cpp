@@ -12,6 +12,10 @@ class GameplayObjs { // Parent for all gameplay objects
         void virtual draw(){}
 };
 
+// BIG NOTE HERE!!!!!
+// Make sure to add override to the functions in child classes or else I'll fucking die
+// 4/16 11:39pm
+
 class Player : public GameplayObjs { // Player object
     public:
         int worldx = GetScreenWidth() / 2;
@@ -29,7 +33,7 @@ class Player : public GameplayObjs { // Player object
         }
 
         void draw() override { // Stuff drawn on screen during the draw phase
-            DrawRectangle(worldx, worldy, 10, 10, WHITE);
+            DrawRectangle(worldx, worldy, 40, 40, WHITE);
         }
 
         void move() { // Player movement
@@ -48,7 +52,7 @@ class Player : public GameplayObjs { // Player object
             }
             worldx += round(dx);
             worldy += round(dy);
-            dx *= .85;
-            dy *= .85;
+            dx *= .8;
+            dy *= .8;
         }
 };
